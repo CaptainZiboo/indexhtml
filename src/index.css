@@ -13,6 +13,8 @@
     --button-color: #4f94e3; /* Bleu pour les boutons */
     --border-color: #d1d1d1; /* Gris clair pour les bordures */
     --hover-background-color: #e5f4fe; /* Léger fond bleu au survol */
+    --color : #6ea7e8;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
