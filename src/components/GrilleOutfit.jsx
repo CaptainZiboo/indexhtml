@@ -1,4 +1,5 @@
 import React from "react";
+import marcel from '../assets/Cloth/marcel.jpg' ;
 
 const GrilleOutfit = () => {
   return (
@@ -16,10 +17,15 @@ const GrilleOutfit = () => {
 
       {/* Vêtement 2 */}
 
-      <div className="flex flex-col items-center bg-[#6ea7e8] p-4 rounded-lg h-full h-[220px]">
+      <div className="flex flex-col items-center bg-[#6ea7e8] p-4 rounded-lg h-full h-[220px] cursor-grab active:cursor-grabbing" draggable="true"
+         onDragStart={(e) => {
+          e.dataTransfer.setData("text/plain", "dragging"); // Set data to allow drop
+          e.dataTransfer.effectAllowed = "move"; // Ensure moving is allowed
+        }}
+      >
 
         <img
-          src="https://static.fursac.com/data/manteau-drap-de-laine-et-cachemire-homme-manteaux-mi-longs-noir-m3ekom-rm31-20-plb830665.1719924408.jpg"
+          src={marcel}
           alt="Vêtement 2"
           className="w-full h-full object-cover rounded-lg"
         />
