@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+}
+
+.board {
+  display: flex;
+  width: auto;
+  margin: 20px;
+  gap: 15px;
+}
+
+.Card {
+  border: 2px solid black;
+  height: 200px;
+}
+.Card p {
+  text-align: center;
+  font-size: 20px;
+}
+.Card img {
+  width: 150px;
+  height: 150px;
+}
+
+/*# sourceMappingURL=Pants.css.map */
