@@ -1,4 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
+      --background-color: #f9f9f9; /* Blanc très clair */
+    --primary-color: #4f94e3; /* Bleu clair (accentuation des boutons) */
+    --button-hover-color: #367bb3; /* Bleu plus foncé pour les boutons au survol */
+    --text-color: #333333; /* Gris foncé pour le texte principal */
+    --secondary-text-color: #777777; /* Gris moyen pour les textes secondaires */
+    --avatar-background-color: #e2e2e2; /* Gris clair pour le fond de l'avatar */
+    --icon-color: #4f94e3; /* Bleu pour les icônes */
+    --button-color: #4f94e3; /* Bleu pour les boutons */
+    --border-color: #d1d1d1; /* Gris clair pour les bordures */
+    --hover-background-color: #e5f4fe; /* Léger fond bleu au survol */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -13,56 +27,3 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
