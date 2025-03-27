@@ -14,6 +14,11 @@ function Header() {
                     <h2>Pantalon</h2>
                 </a>
             </li>
+            <li>
+                <a href="../t_shirt.html">
+                    <h2>T-shirt</h2>
+                </a>
+            </li>
 
         </div>
     )
