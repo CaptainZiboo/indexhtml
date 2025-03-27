@@ -47,6 +47,7 @@ const Avatar = ({ height, width }) => {
     };
   }, [height, width]);
 
+
   return (
     <div className="canvas-container mt-10">
       <canvas
@@ -54,6 +55,7 @@ const Avatar = ({ height, width }) => {
         width={width || 350}
         height={height || 500}
         className="rounded-lg"
+
       ></canvas>
     </div>
   );
