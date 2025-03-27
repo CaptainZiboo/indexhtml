@@ -1,0 +1,106 @@
+```import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+// Scene, Camera, Renderer
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xd3d3d3); // Gris clair
+
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 1, 5);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+document.body.appendChild(renderer.domElement);
+
+// ✅ Contrôles de la caméra (Souris)
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.screenSpacePanning = false;
+controls.minDistance = 1;
+controls.maxDistance = 10;
+controls.maxPolarAngle = Math.PI / 2;
+
+// Lumières
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(5, 10, 5);
+directionalLight.castShadow = true;
+scene.add(directionalLight);
+
+// Charge le modèle humain (GLB)
+const gltfLoader = new GLTFLoader();
+let humanModel;
+
+gltfLoader.load('3DModel.glb', function (gltf) {
+    humanModel = gltf.scene;
+
+    const blackMaterial = new THREE.MeshStandardMaterial({ color: 0x606060 });
+
+    humanModel.traverse((child) => {
+        if (child.isMesh) {
+            child.material = blackMaterial;
+            child.castShadow = true;
+            child.receiveShadow = true;
+        }
+    });
+    scene.add(humanModel);
+
+    // Charge le t-shirt après l'humain
+    loadShirt();
+}, undefined, function (error) {
+    console.error('Erreur lors du chargement de human.glb:', error);
+});
+
+// Charge le t-shirt (FBX) et change sa couleur en bleu
+function loadShirt() {
+    const fbxLoader = new FBXLoader();
+    fbxLoader.load('shirt.fbx', function (fbx) {
+        fbx.scale.set(0.0038, 0.0038, 0.0038); // Adjust scale if needed
+        fbx.position.y += 0.4
+        fbx.position.z += 0.02
+
+        // ✅ Matériau bleu
+        const blueMaterial = new THREE.MeshStandardMaterial({ color: 0x0000ff });
+
+        // Applique le matériau bleu à chaque mesh du t-shirt
+        fbx.traverse((child) => {
+            if (child.isMesh) {
+                child.material = blueMaterial;
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+
+        if (humanModel) {
+            humanModel.add(fbx); // ✅ Attache le t-shirt au modèle humain
+        } else {
+            scene.add(fbx);
+        }
+    }, undefined, function (error) {
+        console.error('Erreur lors du chargement de shirt.fbx:', error);
+    });
+}
+
+// Gère le redimensionnement de la fenêtre
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Boucle d'animation
+function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+}
+animate();
+
+
+```

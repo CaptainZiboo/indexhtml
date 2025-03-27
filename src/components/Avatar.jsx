@@ -1,70 +1,61 @@
 import React, { useEffect } from "react";
 import * as THREE from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader"; // Import du OBJLoader
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 
-const Avatar = () => {
+const Avatar = ({ height, width }) => {
   useEffect(() => {
-    // Récupérer le canvas
     const canvas = document.getElementById("myCanvas");
+    const canvasWidth = width || 350;
+    const canvasHeight = height || 500;
 
-    // Créer une scène Three.js
     const scene = new THREE.Scene();
+    const BlackMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
 
-    // Créer une caméra
+    // Créer un renderer avec alpha activé pour la transparence
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+    renderer.setSize(canvasWidth, canvasHeight);
+
     const camera = new THREE.PerspectiveCamera(
       75,
-      canvas.width / canvas.height,
+      canvasWidth / canvasHeight,
       0.1,
       1000
     );
 
-    // Créer un renderer Three.js et l'ajouter au canvas
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas });
-    renderer.setSize(canvas.width, canvas.height);
-
-    // Créer un chargeur de modèle OBJ
     const loader = new OBJLoader();
-
-    // Charger un modèle 3D (assurez-vous d'avoir un modèle .obj dans le dossier public)
     loader.load("/3DModel_LowPoly.obj", (obj) => {
-      // Ajouter le modèle .obj à la scène
       scene.add(obj);
 
-      // Positionner la caméra
       camera.position.z = 1.5;
 
-      // Ajouter de la lumière à la scène
-      const light = new THREE.AmbientLight(0x404040); // Lumière ambiante douce
+      const light = new THREE.AmbientLight(0xffffff, 0.7);
       scene.add(light);
 
-      // Fonction de rendu pour animer le modèle
       function animate() {
         requestAnimationFrame(animate);
-
-        // Appliquer une rotation au modèle pour l'animer
         obj.rotation.y += 0.005;
-
-        // Rendre la scène avec la caméra
         renderer.render(scene, camera);
       }
 
-      // Démarrer l'animation
+
+    
       animate();
     });
 
-    // Optionnel : Si vous avez besoin de nettoyer les effets à la destruction du composant, vous pouvez retourner une fonction de nettoyage.
     return () => {
       renderer.dispose();
     };
-  }, []); // Le tableau vide [] assure que l'effet se lance une seule fois à l'initialisation
+  }, [height, width]);
+
 
   return (
     <div className="canvas-container mt-10">
       <canvas
         id="myCanvas"
-        width="350"
-        height="500"
-        className="border-2 border-dashed border-primary-color rounded-lg"
+        width={width || 350}
+        height={height || 500}
+        className="rounded-lg"
+
       ></canvas>
     </div>
   );
