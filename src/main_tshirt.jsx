@@ -4,11 +4,12 @@ import './index.css'
 import Header from "./header.jsx";
 import T_shirt from "./tshirt.jsx";
 import DragAndDropImages from "./drop_cloth.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 
 createRoot(document.getElementById('header')).render(
     <StrictMode>
-        <Header />
+        <Navbar />
     </StrictMode>,
 )
 createRoot(document.getElementById('pants')).render(
