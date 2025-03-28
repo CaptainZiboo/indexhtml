@@ -66,6 +66,7 @@ const Avatar = () => {
     };
   }, []);
 
+
   return (
     <div className="canvas-container mt-10">
       <canvas

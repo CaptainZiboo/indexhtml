@@ -8,8 +8,8 @@ import Avatar from './components/Avatar'
 import GrilleOutfit from './components/GrilleOutfit'
 import MiniAvatar from './components/MiniAvatar'
 
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
