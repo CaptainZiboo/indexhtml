@@ -12,7 +12,7 @@ const GrilleOutfit = () => {
 
       <div className="flex flex-col items-center bg-[#6ea7e8] p-4 rounded-lg h-full h-[220px] cursor-grab active:cursor-grabbing" draggable="true"
          onDragStart={(e) => {
-          e.dataTransfer.setData("Top_hat|fbx|head|black|53 cm|0x0f0c0c|1|1|1|0|0", "dragging"); // Set data to allow drop
+          e.dataTransfer.setData("top_hat|fbx|head|black|53 cm|0x0f0c0c|0.2|0.2|0.2|1|0.05", "dragging"); // Set data to allow drop
           e.dataTransfer.effectAllowed = "move"; // Ensure moving is allowed
         }}
       >
@@ -66,7 +66,7 @@ const GrilleOutfit = () => {
 
       <div className="flex flex-col items-center bg-[#6ea7e8] p-4 rounded-lg h-full h-[220px] cursor-grab active:cursor-grabbing" draggable="true"
          onDragStart={(e) => {
-          e.dataTransfer.setData("marcel|fbx|torso|navie blue|L|0x1c34f5|0.004|0.0038|0.0038|0.41|0.021", "dragging"); // Set data to allow drop
+          e.dataTransfer.setData("skirt|fbx|leg|navie blue|L|0x59aadd|0.65|0.3|0.7|0|-0.02", "dragging"); // Set data to allow drop
           e.dataTransfer.effectAllowed = "move"; // Ensure moving is allowed
         }}
       >
